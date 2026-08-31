@@ -1,0 +1,33 @@
+# The only reading the formula ever gets (docs/homebrew-tap.md in the main
+# repo): it is generated per tag and reviewed by nobody, so these checks run
+# on every branch before a merge publishes it to the branch `brew tap` serves.
+name: brew
+on:
+  pull_request:
+    paths: ["Formula/**"]
+  push:
+    branches: [main]
+    paths: ["Formula/**"]
+jobs:
+  checks:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: brew style, audit, install, test — by tap name, not path
+        run: |
+          if [ -d /home/linuxbrew/.linuxbrew ]; then
+            eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          fi
+          # brew audit refuses a formula that is not inside a tap, so the
+          # checkout is copied to where a `brew tap` would have put it.
+          TAP_DIR="$(brew --repository)/Library/Taps/dimitritholen/homebrew-tasqx"
+          mkdir -p "$(dirname "$TAP_DIR")"
+          cp -R "$PWD" "$TAP_DIR"
+          brew style dimitritholen/tasqx/tasqx
+          brew audit --formula --skip-style dimitritholen/tasqx/tasqx
+          brew install --build-from-source dimitritholen/tasqx/tasqx
+          brew test tasqx
