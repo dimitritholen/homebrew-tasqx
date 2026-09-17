@@ -4,7 +4,7 @@ class Tasqx < Formula
   # No `version`: Homebrew scans it out of the URL, and `brew audit` rejects
   # the field as redundant — the first check a tap maintainer runs, failing on
   # the formula this script exists to produce. Verified rather than assumed:
-  # with the line gone, `brew info --json` still reports 0.9.0.
+  # with the line gone, `brew info --json` still reports 0.10.0.
   #
   # Not an OSI-approved license, so homebrew-core is not a route this can ever
   # take. A tap is the whole distribution story, and that is a licensing
@@ -13,19 +13,19 @@ class Tasqx < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/dimitritholen/tasqx/releases/download/v0.9.0/tasqx-v0.9.0-aarch64-apple-darwin.tar.gz"
-      sha256 "88ef578617301fc27dc37549feffd8a85ae8dd540a0bd39c9e4b2516088756a1"
+      url "https://github.com/dimitritholen/tasqx/releases/download/v0.10.0/tasqx-v0.10.0-aarch64-apple-darwin.tar.gz"
+      sha256 "d73eed6340c00594c227cab96177e5c79a877a5867b20cf12d31d946ed64dfae"
     end
     on_intel do
-      url "https://github.com/dimitritholen/tasqx/releases/download/v0.9.0/tasqx-v0.9.0-x86_64-apple-darwin.tar.gz"
-      sha256 "c701891d51e34736c25a79a7f0fa61887e5db24d3fb5c711d2a176bee5248be7"
+      url "https://github.com/dimitritholen/tasqx/releases/download/v0.10.0/tasqx-v0.10.0-x86_64-apple-darwin.tar.gz"
+      sha256 "e0991a1fdec3ddbcba531bbd692114105b8cde0e6188c810c019f450e9be2010"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/dimitritholen/tasqx/releases/download/v0.9.0/tasqx-v0.9.0-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "7f268f92a5e1da99e5b9b9ed33242a8ec3b1499f388a31acdd7e13f49d26e4a5"
+      url "https://github.com/dimitritholen/tasqx/releases/download/v0.10.0/tasqx-v0.10.0-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "6021733b4ced59ece22275f18590626da2450d51f99719a9213f2fa3d07fa530"
     end
   end
 
